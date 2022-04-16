@@ -38,6 +38,7 @@ for location in locations:
             tds = row.find_all('td')
             if len(tds) > 0:
                 tide_name = tds[0].text
+                tide_height = tds[2].text
                 if tds[1].text.strip().split(':')[0] == '00':
                     tide_time = ''.join(['12', ':', tds[1].text.strip().split(':')[1]])
                 elif len(tds[1].text.strip().split(':')[0]) < 2:
@@ -52,7 +53,9 @@ for location in locations:
                                  , 'Date': day.strftime('%m/%d/%Y')
                                     , 'Sunrise': sunrise.strftime('%H:%M')
                                     , 'Sunset': sunset.strftime('%H:%M')
-                                    , 'Low Tide': tide_time.strftime('%H:%M')})
+                                    , 'Low Tide': tide_time.strftime('%H:%M')
+                                    , 'Height': tide_height
+                                 })
 
 results = pd.DataFrame(data)
 results.to_excel('Low_Tide_Results.xlsx')
