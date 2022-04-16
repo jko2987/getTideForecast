@@ -55,4 +55,4 @@ for location in locations:
                                     , 'Low Tide': tide_time.strftime('%H:%M')})
 
 results = pd.DataFrame(data)
-print(results)
+results.to_excel('Low_Tide_Results.xlsx')
